@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "buildCommand": "cd taskflow && npm run build",
-  "outputDirectory": "taskflow/dist/taskflow/browser",
-  "installCommand": "npm install && cd taskflow && npm install",
+  "builds": [
+    {
+      "src": "taskflow/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "taskflow/dist/taskflow/browser",
+        "buildCommand": "cd ../.. && cd taskflow && npm run build"
+      }
+    }
+  ],
   "routes": [
     {
       "src": "/api/(.*)",

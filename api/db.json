@@ -1,0 +1,91 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "demo@taskflow.com",
+      "password": "demo123",
+      "name": "Demo User",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Demo"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "name": "Website Redesign",
+      "description": "Complete redesign of company website",
+      "status": "active",
+      "createdAt": "2024-01-15",
+      "deadline": "2024-03-30"
+    },
+    {
+      "id": 2,
+      "name": "Mobile App Development",
+      "description": "Build iOS and Android applications",
+      "status": "active",
+      "createdAt": "2024-02-01",
+      "deadline": "2024-06-15"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Design homepage mockup",
+      "description": "Create high-fidelity mockup for homepage",
+      "status": "done",
+      "priority": "high",
+      "assignee": 1,
+      "projectId": 1,
+      "createdAt": "2024-01-20",
+      "dueDate": "2024-02-15",
+      "tags": ["design", "ui"]
+    },
+    {
+      "id": 2,
+      "title": "Implement authentication",
+      "description": "Set up user authentication with JWT",
+      "status": "in-progress",
+      "priority": "urgent",
+      "assignee": 1,
+      "projectId": 1,
+      "createdAt": "2024-01-22",
+      "dueDate": "2024-02-20",
+      "tags": ["backend", "security"]
+    },
+    {
+      "id": 3,
+      "title": "Create product catalog",
+      "description": "Build product listing and filtering",
+      "status": "review",
+      "priority": "medium",
+      "assignee": 1,
+      "projectId": 1,
+      "createdAt": "2024-01-25",
+      "dueDate": "2024-03-01",
+      "tags": ["frontend"]
+    },
+    {
+      "id": 4,
+      "title": "Setup CI/CD pipeline",
+      "description": "Configure automated testing and deployment",
+      "status": "todo",
+      "priority": "high",
+      "assignee": 1,
+      "projectId": 2,
+      "createdAt": "2024-02-01",
+      "dueDate": "2024-02-25",
+      "tags": ["devops"]
+    },
+    {
+      "id": 5,
+      "title": "Write API documentation",
+      "description": "Document all API endpoints with examples",
+      "status": "todo",
+      "priority": "medium",
+      "assignee": 1,
+      "projectId": 2,
+      "createdAt": "2024-02-03",
+      "dueDate": "2024-03-10",
+      "tags": ["documentation"]
+    }
+  ]
+}

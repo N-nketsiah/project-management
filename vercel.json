@@ -1,7 +1,9 @@
 {
   "version": 2,
-  "installCommand": "cd taskflow && npm ci --legacy-peer-deps",
-  "buildCommand": "cd taskflow && npm run build",
-  "outputDirectory": "taskflow/dist/taskflow/browser",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "root": "taskflow",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/taskflow/browser",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }

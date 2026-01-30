@@ -1,14 +1,11 @@
 {
   "version": 2,
+  "buildCommand": "cd taskflow && npm install && npm run build",
   "builds": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist/taskflow/browser"
-      }
-    }
-    ,
+      "src": "dist/taskflow/browser/**",
+      "use": "@vercel/static"
+    },
     {
       "src": "api/index.js",
       "use": "@vercel/node"

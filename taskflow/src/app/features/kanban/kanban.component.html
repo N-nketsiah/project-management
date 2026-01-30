@@ -1,0 +1,78 @@
+<div class="kanban-container p-6 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-gray-100">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-100">Kanban Board</h1>
+    <p class="text-gray-600 dark:text-gray-400 mt-2">Drag and drop tasks to update their status</p>
+  </div>
+
+  @if (loading()) {
+    <div class="flex justify-center items-center h-64">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+    </div>
+  } @else {
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      @for (column of columns(); track column.id) {
+        <div class="kanban-column {{ getColumnColor(column.id) }} rounded-lg p-4 min-h-[500px]">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-100">{{ column.title }}</h2>
+            <span class="bg-white dark:bg-gray-800 rounded-full px-3 py-1 text-sm font-medium text-gray-600 dark:text-gray-300">
+              {{ column.tasks.length }}
+            </span>
+          </div>
+
+          <div
+            cdkDropList
+            [cdkDropListData]="column.tasks"
+            [cdkDropListConnectedTo]="getConnectedLists()"
+            (cdkDropListDropped)="drop($event, column.id)"
+            class="task-list min-h-[400px]"
+          >
+            @for (task of column.tasks; track task.id) {
+              <div
+                cdkDrag
+                class="task-card bg-white dark:bg-gray-800 rounded-lg shadow-sm p-4 mb-3 cursor-move hover:shadow-md transition-shadow"
+              >
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-medium text-gray-800 dark:text-gray-100">{{ task.title }}</h3>
+                  <span class="text-xs px-2 py-1 rounded {{ getPriorityColor(task.priority) }}">
+                    {{ task.priority }}
+                  </span>
+                </div>
+
+                @if (task.description) {
+                  <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">{{ task.description }}</p>
+                }
+
+                <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                  @if (task.dueDate) {
+                    <span class="flex items-center">
+                      <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      {{ task.dueDate | date: 'MMM d' }}
+                    </span>
+                  }
+
+                  @if (task.assignee) {
+                    <div class="w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs">
+                      {{ task.assignee }}
+                    </div>
+                  }
+                </div>
+
+                @if (task.tags && task.tags.length > 0) {
+                  <div class="flex flex-wrap gap-1 mt-2">
+                    @for (tag of task.tags; track tag) {
+                      <span class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 px-2 py-1 rounded">
+                        {{ tag }}
+                      </span>
+                    }
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

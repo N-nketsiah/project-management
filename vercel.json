@@ -1,6 +1,8 @@
 {
   "version": 2,
-  "buildCommand": "cd taskflow && npm install && npm run build",
+  "root": "taskflow",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/taskflow/browser",
   "builds": [
     {
       "src": "dist/taskflow/browser/**",
@@ -14,15 +16,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/api/index.js"
-    },
-    {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "/(.*\\..*)",
-      "dest": "/$1"
+      "dest": "api/index.js"
     },
     {
       "src": "/(.*)",
